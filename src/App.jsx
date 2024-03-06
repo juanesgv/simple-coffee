@@ -1,10 +1,12 @@
+import Layout from "../pages/Layout"
+import Collections from "../pages/Collections"
 
 function App() {
 
   return (
-    <>
-      <p>Incio</p>
-    </>
+      <Layout>
+        <Collections />
+      </Layout>
   )
 }
 
