@@ -3,9 +3,8 @@ import star_fill from '/img/Star_fill.svg'
 import star from '/img/Star.svg'
 
 const Card = ({ value }) => {
-    console.log("lo que estoy enviando", value)
     return (
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-3'>
             <figure className='relative'>
                 {value.isPopular &&
                     <p className=' absolute font-Montserrat text-xs px-2 py-1 text-black-1 bg-yellow-popular rounded-full top-3 left-4'>Popular</p>

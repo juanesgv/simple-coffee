@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Tabs from '../components/Tabs';
+import Spinner from '../components/Spinner';
 import Card from '../components/Card';
 import axios from 'axios';
 
 const Collections = () => {
 
   const [coffeList, setCoffeList] = useState([])
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,54 +16,36 @@ const Collections = () => {
         setCoffeList(data)
       } catch (error) {
         console.log(error)
+      } finally {
+        setLoading(false)
       }
     }
     fetchData()
   }, [])
 
+  const renderCardGrid = filter => {
+    return (
+      <div className='grid grid-cols-3 gap-x-8 gap-y-12'>
+        {coffeList.filter(filter).map((coffee, index) => (
+          <Card key={index} value={coffee} />
+        ))
+        }
+      </div>
+    )
+  }
+
   const tabData = [
     {
       title: 'All products',
-      content: (
-        <div className='grid grid-cols-3 gap-8'>
-          {coffeList.map((coffee, index) => (
-            <Card
-              key={index}
-              value={coffee}
-            />
-          ))}
-        </div>
-      ),
+      content: renderCardGrid(() => true),
     },
     {
       title: 'Available now',
-      content: (
-        <div className='grid grid-cols-3 gap-8'>
-          {coffeList.map((coffee, index) => (
-            !coffee.isSoldOut && (
-              <Card
-                key={index}
-                value={coffee}
-              />
-            )
-          ))}
-        </div>
-      ),
+      content: renderCardGrid(coffee => !coffee.isSoldOut),
     },
     {
       title: 'Popular coffees',
-      content: (
-        <div className='grid grid-cols-3 gap-8'>
-          {coffeList.map((coffee, index) => (
-            coffee.isPopular && (
-              <Card
-                key={index}
-                value={coffee}
-              />
-            )
-          ))}
-        </div>
-      ),
+      content: renderCardGrid(coffee => coffee.isPopular) ,
     },
   ];
 
@@ -72,7 +56,11 @@ const Collections = () => {
         <p className='font-Montserrat text-base text-center text-text-white opacity-75'>Introducing our Coffee Collection, a selection of unique coffees from different roast types and origins, expertly roasted in small batches and shipped fresh weekly.</p>
       </div>
 
-      <Tabs tabs={tabData} />
+      {loading ? (
+        <Spinner/>
+      ):(
+        <Tabs tabs={tabData} />
+      )}
     </>
 
   )
