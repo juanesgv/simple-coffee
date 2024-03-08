@@ -25,7 +25,7 @@ const Collections = () => {
 
   const renderCardGrid = filter => {
     return (
-      <div className='grid grid-cols-3 gap-x-8 gap-y-12'>
+      <div className='grid lg:grid-cols-3 sm:grid-cols-2 gap-x-8 gap-y-12'>
         {coffeList.filter(filter).map((coffee, index) => (
           <Card key={index} value={coffee} />
         ))

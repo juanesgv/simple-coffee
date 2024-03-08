@@ -9,11 +9,11 @@ const Tabs = ({ tabs }) => {
 
   return (
     <div className='mt-6'>
-      <div className="flex gap-6 justify-center my-6">
+      <div className="flex sm:gap-6 justify-center my-6 w-full">
         {tabs.map((tab, index) => (
           <div
             key={index}
-            className={`cursor-pointer py-2 px-4 rounded-md min-w-24 text-center font-Montserrat ${
+            className={`p-2 cursor-pointer rounded-md min-w-24 text-center font-Montserrat text-sm sm:py-2 sm:px-4 ${
               index === activeTab ? 'bg-text-gray text-white' : 'bg-transparent text-white'
             }`}
             onClick={() => handleTabClick(index)}

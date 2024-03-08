@@ -15,6 +15,9 @@ export default {
       },
       maxWidth: {
         '1080': '1080px',
+        '896' : '869px',
+        '592' : '592px',
+        '317' : '317px'
       },
       colors : {
         'black-1' : '#111315',
@@ -24,6 +27,9 @@ export default {
         'apple-green' : '#BDE3CC',
         'red-error' : '#ED735C',
         'yellow-popular' : '#F5C769',
+      },
+      screens: {
+        'xs' : '320px'
       }
     },
   },
